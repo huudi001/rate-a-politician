@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% load bootstrap3 %}
+{% load static %}
+<!-- {% load staticfiles %} -->
+
+{% block styles %}
+  {% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+  {{block.super}}
+  <div class="container">
+    <div class="row">
+      <!-- Empty div -->
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <div class="panel panel-default">
+
+          <div class="panel-heading">
+            <h3 class="text-center">add a new leader</h3>
+          </div>
+          <div class="panel-body">
+            <form action="{% url 'submit_leader' %}" method="post" enctype="multipart/form-data">
+              {%csrf_token%}
+              {% bootstrap_form new_leader_form%}
+              <div class="add_tag">
+                <button type="button" name="button">
+                  <i class="fa fa-plus" aria-hidden="true" aria-hidden="true" data-toggle="modal" data-target="#myModal">Add Tag</i>
+                </button>
+              </div>
+
+              <input type="submit" class="btn btn-lg" value="post">
+
+            </form>
+            <div class="col-md-4">
+              <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <form action="{% url 'create_leader_tag' %}" method="post" enctype="multipart/form-data">
+                        {%csrf_token%}
+                        {% bootstrap_form new_tag_form%}
+                        <input type="submit" class="btn btn-lg" value="Add Tag">
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-lg" data-dismiss="modal" value="comment">CANCEL</button>
+                    </div>
+                    <!-- <input type="text" class="form-control" placeholder="Add a comment..." aria-describedby="comment"> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+      <!-- empty div -->
+      <div class="col-md-4"></div>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block scripts %}
+  {% bootstrap_javascript %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+{% endblock %}

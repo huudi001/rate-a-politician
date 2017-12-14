@@ -1,0 +1,51 @@
+{% load bootstrap3 %}
+{% load static %}
+
+<!-- title -->
+{% block title %}
+  {% if title %}
+    <title>Rate your leader-
+      {{title}}</title>
+    {%else%}
+    <title>Rate your leader</title>
+  {% endif %}
+{% endblock %}
+
+<!-- styles -->
+{% block styles %}
+  {% bootstrap_css%}
+  <link rel="stylesheet" href="{% static 'css/index.css'%}">
+  <!-- <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_89aPoAntoZzJ4_DsM_mqpWxI861WKdo&callback=initMap">
+  </script> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <!-- <script type="text/javascript" src="{%static 'js/google.js'%}">
+
+  </script> -->
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+{% endblock %}
+AIzaSyBQ0aE2blrCXIVvc6Bk7PAux5EJ9TB8JAU
+
+content_copy
+
+<!-- body -->
+{% block body %}
+  {% block navbar%}
+    {% include 'navbar.html' %}
+  {% endblock %}
+  {% block content %}{% endblock %}
+
+{% endblock %}
+
+<!-- scripts -->
+{% block scripts %}
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- <script type="text/javascript" src="{%static 'js/google.js'%}"></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_89aPoAntoZzJ4_DsM_mqpWxI861WKdo&callback=initMap">
+  </script> -->
+
+  {% bootstrap_javascript %}
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load static %}
+{% block content %}
+{% for leader in leaders %}
+<div class="row">
+  <div class="col-md-4">
+    <img class="img-responsive" src="{{leader.picture.url}}" alt="" width = "120" >
+  </div>
+  <div class="col-md-8">
+    <h1><strong> <a href="{% url 'leader' leader.id %}"> {{leader.name}}</a></strong></h1>
+      <h1><strong> <a href="{% url 'leader' leader.id %}">governer of: {{leader.county}}</a></strong></h1>
+    <p>{{leader.description}}</p>
+    <p><strong>by :</strong>{{leader.user.username}}</p>
+
+
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

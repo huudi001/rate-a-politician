@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load static %}
+{% block styles %}
+  {% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <link type="text/javascript" src="{%static 'js/google.js'%}">
+
+</link>
+
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <img src="{{leader.picture.url}}" alt="" class="img-responsive">
+    </div>
+    <div class="col-md-6">
+        <h1><strong> <a href="{% url 'leader' leader.id %}"> {{leader.position}}</a></strong></h1>
+        <h1><strong> <a href="{% url 'leader' leader.id %}"> {{leader.name}}</a></strong></h1>
+        <p>{{leader.description}}</p>
+        <p><strong>by :</strong>{{leader.user.username}}></p>
+        <p><strong>leadership: {{av_leadership}}</strong> <strong> publicity: {{av_publicity}}strong <strong>integrity: {{av_integrity}}</strong></p>
+        <br>
+        <h3>Rate</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <form action="/leader/{{leader.id}}" method="post" enctype="multipart/form-data">
+                    {%csrf_token%}
+                    {% bootstrap_form form layout='inline' %}
+                    <input type="submit" class="btn btn-lg" value="Submit">
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="container">
+
+
+<div id= "map">
+
+
+
+</div>
+<script>
+    function myMap() {
+      var myCenter = new google.maps.LatLng(-0.091702,34.767957);
+      var mapCanvas = document.getElementById("map");
+      var mapOptions = {center: myCenter, zoom: 12};
+      var map = new google.maps.Map(mapCanvas, mapOptions);
+      var marker = new google.maps.Marker({
+        position:myCenter,
+        animation:google.maps.Animation.BOUNCE
+      });
+      marker.setMap(map);
+    }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYhT-2wPJB1I0sCAKU1a2mUm14Z70Z41Y&callback=myMap">
+
+    </script>
+    </div>
+
+{% endblock %}
